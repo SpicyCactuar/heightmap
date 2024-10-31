@@ -4,7 +4,7 @@ OpenGL application displaying a textured heightmap.
 An `nPoints` sized triangle strip is generated at runtime. For each vertex, its tangents and UVs are computed. 
 The information is fed into a basic graphics pipeline (vert + frag) that displaces the vertices 
 and subsequently Blinn-Phong shades the resulting fragments. Three terrain textures are mixed according to height.
-The scene is illuminated by a single directional light.
+A single directional light illuminates the scene.
 
 ## Project Structure
 
