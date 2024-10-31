@@ -63,3 +63,5 @@ bin/main-debug-x64-gcc
 * **GLM**: `0.9.7.1`
 
 ## Showcase
+
+![heightmap](https://github.com/user-attachments/assets/893ab962-5d3c-440b-b562-1c01093ce4b6)
