@@ -1,7 +1,7 @@
 # Soft Trace
 
 OpenGL application displaying a textured heightmap.
-An `nPoints` vertices mesh is generated at runtime, along with its tangents and UVs.
+An `nPoints` sized triangle strip is generated at runtime. For each vertex, its tangents and UVs are computed. 
 The information is fed into a basic graphics pipeline (vert + frag) that displaces the vertices 
 and subsequently Blinn-Phong shades the resulting fragments. Three terrain textures are mixed according to height.
 The scene is illuminated by a single directional light.
@@ -24,7 +24,7 @@ heightmap/
 
 ## Environment - Linux
 
-The following packages are required
+The following packages are required:
 
 ```
 libxcursor-dev
