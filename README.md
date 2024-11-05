@@ -17,7 +17,7 @@ heightmap/
 ├── lib/                 # Generated lib files
 ├── bin/                 # Generated executable files
 ├── premake5.lua         # Premake 5 config
-├── premake5             # Premake 5 executable (Linux)
+├── premake5             # Premake 5 executable (Linux, MacOS)
 ├── premake5.exe         # Premake 5 executable (Windows)
 └── README.md            # Project README
 ```
@@ -65,3 +65,14 @@ bin/main-debug-x64-gcc
 ## Showcase
 
 ![heightmap](https://github.com/user-attachments/assets/893ab962-5d3c-440b-b562-1c01093ce4b6)
+
+## Controls
+
+| Key(s)                  | Action                                |
+|-------------------------|---------------------------------------|
+| `↑` / `↓` / `←` / `→`   | Move forward, back, left, and right   |
+| `Space`                 | Toggle wireframe visualisation mode   |
+| `N`                     | Toggle normal visualisation mode      |
+| `T` / `S`               | Scale height up and down              |
+| `W` / `A` / `S` / `D`   | Rotate directional light              |
+| `Esc`                   | Close the application                 |
