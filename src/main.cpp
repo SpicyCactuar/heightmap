@@ -66,7 +66,7 @@ bool showWireframe = false;
 bool normalMode = false;
 
 GLFWwindow* initializeGL() {
-    // Try initialise GLFW
+    // Try initialising GLFW
     if (!glfwInit()) {
         std::cerr << "Failed to initialize GLFW" << std::endl;
         return nullptr;
@@ -76,13 +76,13 @@ GLFWwindow* initializeGL() {
     glfwWindowHint(GLFW_SAMPLES, 1); // No anti-aliasing
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make macOS happy
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Create window
     GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "OpenGLRenderer", nullptr, nullptr);
 
-    // Eerly return if window fails to open
+    // Early return if window fails to open
     if (window == nullptr) {
         std::cerr << "Failed to open GLFW window. Check whether your GPU is OpenGL 4.2 compatible." << std::endl;
         glfwTerminate();
@@ -90,7 +90,7 @@ GLFWwindow* initializeGL() {
     }
     glfwMakeContextCurrent(window);
 
-    // Try initialize GLEW
+    // Try initialising GLEW
     glewExperimental = true; // Needed for core profile
     if (glewInit() != GLEW_OK) {
         std::cerr << "Failed to initialize GLEW" << std::endl;
@@ -182,7 +182,7 @@ void loadModel() {
         glm::vec3 tangent = (e1 * duv2.y - e2 * duv1.y) * r;
         glm::vec3 bitangent = (e2 * duv1.x - e1 * duv2.x) * r;
 
-        // All of the 3 vertices have the same tangent & bitangent
+        // All the 3 vertices have the same tangent & bitangent
         tangents.push_back(tangent);
         tangents.push_back(tangent);
         tangents.push_back(tangent);
@@ -207,7 +207,7 @@ void loadModel() {
         GL_FLOAT, // type of each individual element
         GL_FALSE, // normalized?
         0, // stride
-        (void*) nullptr // array buffer offset
+        nullptr // array buffer offset
     );
 
     // Bind uvs buffer
@@ -221,7 +221,7 @@ void loadModel() {
         GL_FLOAT, // type of each individual element
         GL_FALSE, // normalized?
         0, // stride
-        (void*) nullptr // array buffer offset
+        nullptr // array buffer offset
     );
 
     // Bind tangents buffer
@@ -235,7 +235,7 @@ void loadModel() {
         GL_FLOAT, // type of each individual element
         GL_FALSE, // normalized?
         0, // stride
-        (void*) nullptr // array buffer offset
+        nullptr // array buffer offset
     );
 
     // Bind bitangents buffer
@@ -249,7 +249,7 @@ void loadModel() {
         GL_FLOAT, // type of each individual element
         GL_FALSE, // normalized?
         0, // stride
-        (void*) nullptr // array buffer offset
+        nullptr // array buffer offset
     );
 
     // Generate a buffer for the indices as well
@@ -276,7 +276,7 @@ void loadPointTexture(const std::string& path, GLuint* textureID) {
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_BGR, GL_UNSIGNED_BYTE, data);
     delete[] data;
 
-    // Clamp to edge makes obtaining values outside of [0, 1] to repeat the edge value
+    // Clamp to edge makes obtaining values outside [0, 1] to repeat the edge value
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     // No interpolation
@@ -520,29 +520,29 @@ int main() {
         glUseProgram(programID);
 
         // Set matrix uniforms
-        GLuint mvpID = glGetUniformLocation(programID, "MVP");
+        const GLuint mvpID = glGetUniformLocation(programID, "MVP");
         glUniformMatrix4fv(mvpID, 1, GL_FALSE, &modelViewProjectionMatrix[0][0]);
 
-        GLuint viewID = glGetUniformLocation(programID, "V");
+        const GLuint viewID = glGetUniformLocation(programID, "V");
         glUniformMatrix4fv(viewID, 1, GL_FALSE, &viewMatrix[0][0]);
 
-        GLuint modelID = glGetUniformLocation(programID, "M");
+        const GLuint modelID = glGetUniformLocation(programID, "M");
         glUniformMatrix4fv(modelID, 1, GL_FALSE, &modelMatrix[0][0]);
 
         // Set heightMapScale uniform
-        GLuint heightMapScaleID = glGetUniformLocation(programID, "heightMapScale");
+        const GLuint heightMapScaleID = glGetUniformLocation(programID, "heightMapScale");
         glUniform1f(heightMapScaleID, heightMapScale);
 
         // Set uniform light properties
-        GLuint lightDirectionID = glGetUniformLocation(programID, "lightDirection_wcs");
+        const GLuint lightDirectionID = glGetUniformLocation(programID, "lightDirection_wcs");
         glUniform3fv(lightDirectionID, 1, &lightDirection_wcs[0]);
 
         // Set the nPoints uniform
-        GLuint nPointsID = glGetUniformLocation(programID, "nPoints");
-        glUniform1f(nPointsID, float(nPoints - 1));
+        const GLuint nPointsID = glGetUniformLocation(programID, "nPoints");
+        glUniform1f(nPointsID, static_cast<float>(nPoints - 1));
 
         // Set normalMode uniform
-        GLuint normalModeId = glGetUniformLocation(programID, "normalMode");
+        const GLuint normalModeId = glGetUniformLocation(programID, "normalMode");
         glUniform1i(normalModeId, normalMode);
 
         // Bind texture ids to textures
@@ -570,7 +570,7 @@ int main() {
         // Draw
         glDrawElements(
             GL_TRIANGLE_STRIP, // mode
-            (GLsizei) nIndices, // count
+            static_cast<GLsizei>(nIndices), // count
             GL_UNSIGNED_INT, // type
             nullptr // element array buffer offset
         );
