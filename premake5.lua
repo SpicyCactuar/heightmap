@@ -1,4 +1,4 @@
-workspace "oglShadersRelease"
+workspace "heightmap"
 	language "C++"
 	cppdialect "C++17"
 
@@ -8,7 +8,7 @@ workspace "oglShadersRelease"
 	flags "NoPCH"
 	flags "MultiProcessorCompile"
 
-	startproject "main"
+	startproject "heightmap"
 
 	debugdir "%{wks.location}"
 	objdir "_build_/%{cfg.buildcfg}-%{cfg.platform}-%{cfg.toolset}"
@@ -62,7 +62,7 @@ workspace "oglShadersRelease"
 include "external" 
 
 -- Projects
-project "main"
+project "heightmap"
 	local sources = { 
 		"src/**.cpp",
 		"src/**.hpp",

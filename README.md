@@ -1,8 +1,8 @@
-# Soft Trace
+# Heightmap
 
 OpenGL application displaying a textured heightmap.
 An `nPoints` sized triangle strip is generated at runtime. For each vertex, its tangents and UVs are computed. 
-The information is fed into a basic graphics pipeline (vert + frag) that displaces the vertices 
+The information is fed into a basic graphics pipeline (`.vert` + `.frag`) that displaces the vertices 
 and subsequently Blinn-Phong shades the resulting fragments. Three terrain textures are mixed according to height.
 A single directional light illuminates the scene.
 
@@ -21,24 +21,38 @@ heightmap/
 └── README.md            # Project README
 ```
 
-## Build
+## Build - Make
 
-```bash
+```shell
 ./premake5 gmake2
-make
+make [config={debug_x64|release_x64}]
 ```
+
+The `config` parameter defaults to `debug_x64`.
+
+## Build - Visual Studio
+
+```shell
+./premake5.exe vs2022
+```
+
+Open generated `.sln` project file.
+
+## Build - Xcode
+
+```shell
+./premake5.apple xcode4
+```
+
+Open generated Xcode project.
 
 ## Run
 
-```bash
-bin/main-{target}
-```
-
-Example:
-
 ```shell
-bin/main-debug-x64-gcc
+bin/heightmap-{target}.exe
 ```
+
+Executables have `.exe` extension for all platforms, but binaries are platform-specific.
 
 ## Controls
 
