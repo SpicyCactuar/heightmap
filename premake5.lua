@@ -33,7 +33,7 @@ workspace "heightmap"
 		links "GLX"
 	
 	filter "system:windows"
-		links "OpenGL32"
+		links { "opengl32", "gdi32" }
 
 	filter "*"
 
